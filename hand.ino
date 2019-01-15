@@ -39,7 +39,7 @@ void loop() {
 }
 
 
-void turnFor(Vinger ving, int out){
+void turnFor(Vinger &ving, int out){
   Servo &serv = ving.serv;
   int &pos = ving.posi;
   
@@ -49,7 +49,7 @@ void turnFor(Vinger ving, int out){
   }
 }
 
-void turnBack(Vinger ving, int out){
+void turnBack(Vinger &ving, int out){
   Servo &serv = ving.serv;
   int &pos = ving.posi;
 
