@@ -20,20 +20,32 @@ void setup() {
 }
 
 void loop() {
-  for(auto &toturn : vinger){ // turn all fingers forward and back one by one
-    turnFor(toturn, maxTurn); 
-    turnBack(toturn, maxTurn);
+  // turn all fingers forward and back one by one
+  for(auto &toturn : vinger){   // each finger
+    toturn.posi = 0;            // set the position to 0;
+    turnFor(toturn, maxTurn);   // turn to maxTurn
+    
+    toturn.posi = maxTurn;      // set the position to maxTurn
+    turnBack(toturn, maxTurn);  // turn to 0
+    
+    toturn.posi = 0;            // set the position to 0
   }
-  
-  for(int x = 0; x <= maxTurn; x += 1){ // turn all fingers forward
-    for(auto &toturn : vinger){
-      turnFor(toturn, x); 
+
+  // turn all fingers forward
+  for(int x = 0; x <= maxTurn; x += 1){  // turn all the fingers one degree by one
+    for(auto &toturn : vinger){          // each finger
+      turnFor(toturn, x);                // turn
     }
   }
-  
-  for(int x = maxTurn; x >= 0; x -= 1){ // turn all fingers back
-    for(auto &toturn : vinger){
-      turnFor(toturn, x); 
+
+  for(auto &toturn: vinger){             // each finger
+    toturn.posi = maxTurn;               // set the position to max
+  }
+
+  // turn all fingers back
+  for(int x = maxTurn; x >= 0; x -= 1){  // one degree by one
+    for(auto &toturn : vinger){          // each finger
+      turnFor(toturn, x);                // turn
     }
   }
 }
@@ -43,7 +55,7 @@ void turnFor(Vinger &ving, int out){
   Servo &serv = ving.serv;
   int &pos = ving.posi;
   
-  for (pos = 0; pos <= out; pos += 1) {
+  for (pos = pos; pos <= out; pos += 1) {
     serv.write(pos);
     delay(15);
   }
@@ -53,7 +65,7 @@ void turnBack(Vinger &ving, int out){
   Servo &serv = ving.serv;
   int &pos = ving.posi;
 
-  for (pos = out; pos >= 0; pos -= 1) {
+  for (pos = pos; pos >= 0; pos -= 1) {
     serv.write(pos);
     delay(15);
   }
