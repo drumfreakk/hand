@@ -26,7 +26,7 @@ void loop() {
     turnFor(toturn, maxTurn);   // turn to maxTurn
     
     toturn.posi = maxTurn;      // set the position to maxTurn
-    turnBack(toturn, maxTurn);  // turn to 0
+    turnBack(toturn, 0);  // turn to 0
     
     toturn.posi = 0;            // set the position to 0
   }
@@ -45,27 +45,27 @@ void loop() {
   // turn all fingers back
   for(int x = maxTurn; x >= 0; x -= 1){  // one degree by one
     for(auto &toturn : vinger){          // each finger
-      turnFor(toturn, x);                // turn
+      turnBack(toturn, x);                // turn
     }
   }
 }
 
 
-void turnFor(Vinger &ving, int out){
-  Servo &serv = ving.serv;
-  int &pos = ving.posi;
+void turnFor(Vinger &turn, int deg){
+  Servo &serv = turn.serv;
+  int &pos = turn.posi;
   
-  for (pos = pos; pos <= out; pos += 1) {
+  for (pos; pos <= deg; pos += 1) {
     serv.write(pos);
     delay(15);
   }
 }
 
-void turnBack(Vinger &ving, int out){
-  Servo &serv = ving.serv;
-  int &pos = ving.posi;
+void turnBack(Vinger &turn, int deg){
+  Servo &serv = turn.serv;
+  int &pos = turn.posi;
 
-  for (pos = pos; pos >= 0; pos -= 1) {
+  for (pos; pos >= deg; pos -= 1) {
     serv.write(pos);
     delay(15);
   }
