@@ -1,6 +1,6 @@
 #include <Servo.h>
 
-int maxTurn = 180;
+int maxTurn = 150;
 
 struct Vinger{
   int posi = 0;
@@ -32,9 +32,9 @@ void loop() {
   }
 
   // turn all fingers forward
-  for(int x = 0; x <= maxTurn; x += 1){  // turn all the fingers one degree by one
+  for(int x = 0; x <= maxTurn; x += 2){  // turn all the fingers one degree by one
     for(auto &toturn : vinger){          // each finger
-      turnFor(toturn, x);                // turn
+      turnFor(toturn, x, 2);                // turn
     }
   }
 
@@ -43,9 +43,9 @@ void loop() {
   }
 
   // turn all fingers back
-  for(int x = maxTurn; x >= 0; x -= 1){  // one degree by one
+  for(int x = maxTurn; x >= 0; x -= 2){  // one degree by one
     for(auto &toturn : vinger){          // each finger
-      turnBack(toturn, x);                // turn
+      turnBack(toturn, x, 2);                // turn
     }
   }
 }
@@ -66,6 +66,26 @@ void turnBack(Vinger &turn, int deg){
   int &pos = turn.posi;
 
   for (pos; pos >= deg; pos -= 1) {
+    serv.write(pos);
+    delay(15);
+  }
+}
+
+void turnFor(Vinger &turn, int deg, int stp){
+  Servo &serv = turn.serv;
+  int &pos = turn.posi;
+  
+  for (pos; pos <= deg; pos += stp) {
+    serv.write(pos);
+    delay(15);
+  }
+}
+
+void turnBack(Vinger &turn, int deg, int stp){
+  Servo &serv = turn.serv;
+  int &pos = turn.posi;
+
+  for (pos; pos >= deg; pos -= stp) {
     serv.write(pos);
     delay(15);
   }
