@@ -1,5 +1,7 @@
 # hand
 
+Ze draaien eerst omstebeurt heen en terug, en dan allemaal tegelijk heen en terug.
+
 Servo library: 
 
 https://github.com/arduino-libraries/Servo
