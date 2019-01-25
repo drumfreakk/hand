@@ -26,9 +26,11 @@ void loop() {
   while(Serial.available() > 0){
     inp = Serial.read();
 
-    servo.write(static_cast<int>(inp))
+    servo.write(static_cast<int>(inp));
 
-    Serial.println("Set servo to" + inp + " degrees");
+    Serial.print("Set servo to");
+    Serial.print(inp);
+    Serial.println("degrees");
   }  
 
 }
