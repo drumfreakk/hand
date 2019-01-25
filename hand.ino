@@ -1,11 +1,6 @@
-#include <Servo.h>
+#include "Vinger.h"
 
 int maxTurn = 150;  // het aanatl graden dat het draait, dit is ongeveer het max met deze servos
-
-struct Vinger{
-  int posi = 0;
-  Servo serv;
-};
 
 Vinger vinger[5];   // het aantal servos dat je gebruikt
 
@@ -47,46 +42,5 @@ void loop() {
     for(auto &toturn : vinger){          // each finger
       turnBack(toturn, x, 2);                // turn
     }
-  }
-}
-
-
-void turnFor(Vinger &turn, int deg){
-  Servo &serv = turn.serv;
-  int &pos = turn.posi;
-  
-  for (pos; pos <= deg; pos += 1) {
-    serv.write(pos);
-    delay(15);
-  }
-}
-
-void turnBack(Vinger &turn, int deg){
-  Servo &serv = turn.serv;
-  int &pos = turn.posi;
-
-  for (pos; pos >= deg; pos -= 1) {
-    serv.write(pos);
-    delay(15);
-  }
-}
-
-void turnFor(Vinger &turn, int deg, int stp){
-  Servo &serv = turn.serv;
-  int &pos = turn.posi;
-  
-  for (pos; pos <= deg; pos += stp) {
-    serv.write(pos);
-    delay(15);
-  }
-}
-
-void turnBack(Vinger &turn, int deg, int stp){
-  Servo &serv = turn.serv;
-  int &pos = turn.posi;
-
-  for (pos; pos >= deg; pos -= stp) {
-    serv.write(pos);
-    delay(15);
   }
 }
