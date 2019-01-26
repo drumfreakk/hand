@@ -5,23 +5,15 @@
 
 #include "Arduino.h"
 
-struct Vin{
-int posi = 0;
-	Servo serv;
-};
-
-void turnFor(Vin &turn, int deg, int stp = 1);
-void turnBack(Vin &turn, int deg, int stp = 1);
-void turn(Vin &turn, int deg, int stp = 1);
-/*
 class Vinger
 {
-private:
+public:
 	int posi = 0;
 	Servo serv;
 
-public:
-	Vinger(){}
+	Vinger(){
+	Serial.println("hi");
+}
 	Vinger(int posi) : posi(posi){}
 
 	uint8_t attach(int pin);
@@ -31,5 +23,5 @@ public:
 
 	void turn(int deg, int stp = 1);
 };
-*/
+
 #endif
