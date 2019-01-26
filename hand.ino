@@ -1,11 +1,11 @@
 #include "src/Vinger/Vinger.h"
 
-const int servos = 1;
+const int servos = 1;   // het aantal servos dat je gebruikt
 
-int maxTurn = 150;  // het aantal graden dat het draait, dit is ongeveer het max met deze servos
-int minTurn = 0;
+int maxTurn = 150;  // het max aantal graden dat het draait, dit is ongeveer het max met deze servos
+int minTurn = 0;    // het min aantal graden dat het draait, dit is ongeveer het max met deze servos
 
-Vinger vinger[servos];   // het aantal servos dat je gebruikt
+Vinger vinger[servos];
 
 void setup() {
   Serial.begin(9600);
@@ -19,20 +19,20 @@ void setup() {
 
 void loop() {
   
-  // turn all fingers forward and back one by one
+  // draai alle servos heen en terug, omstebeurt
   for(auto &toturn : vinger){ 
     toturn.turnFor(maxTurn);
     toturn.turnBack(minTurn);
   }
 /*
-  // turn all fingers forward
+  // draai alle servos heen
   for(int x = 0; x <= maxTurn; x += 2){
     for(auto &toturn : vinger){
       toturn.turnFor(x, 2);
     }
   }
 
-  // turn all fingers back
+  // draai alle servos terug
   for(int x = maxTurn; x >= minTurn; x -= 2){
     for(auto &toturn : vinger){
       toturn.turnBack(x, 2);
