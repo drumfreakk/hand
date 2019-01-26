@@ -1,12 +1,10 @@
 #include "Vinger.h"
 
 uint8_t Vinger::attach(int pin){
-	Serial.println("attak");
 	return Vinger::serv.attach(pin);	
 }
 
 void Vinger::turnFor(int deg, int stp = 1){
-Serial.println("for");
   Servo &serv = Vinger::serv;
   int &pos = Vinger::posi;
   
@@ -17,7 +15,6 @@ Serial.println("for");
 }
 
 void Vinger::turnBack(int deg, int stp = 1){
-Serial.println("back");
   Servo &serv = Vinger::serv;
   int &pos = Vinger::posi;
 
@@ -28,7 +25,6 @@ Serial.println("back");
 }
 
 void Vinger::turn(int deg, int stp = 1){
-	Serial.println("hi");
   if(deg > Vinger::posi){
     Vinger::turnBack(deg, stp);
   }
