@@ -11,9 +11,7 @@ public:
 	int posi = 0;
 	Servo serv;
 
-	Vinger(){
-	Serial.println("hi");
-}
+	Vinger(){}
 	Vinger(int posi) : posi(posi){}
 
 	uint8_t attach(int pin);
