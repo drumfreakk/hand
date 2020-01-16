@@ -1,5 +1,7 @@
 #include <BetterServo.h>
 
+#define TURNASONE
+
 #define MAXTURN 150  // het max aantal graden dat het draait, dit is ongeveer het max met deze servos
 #define MINTURN 0    // het min aantal graden dat het draait, dit is ongeveer het max met deze servos
 
@@ -10,27 +12,29 @@ int pin[5] = {2, 3, 4, 5, 6};   // de pinnen, als je minder dan vijf servos gebr
 
 BetterServo vingers[SERVOS];
 
-void setup() {
- 
+void setup() { 
   for(int x = 0; x < SERVOS; x++){
     vingers[x].setLimits(MINTURN, MAXTURN);
     vingers[x].attach(pin[x]);
+    vingers[x].turn(MINTURN);
   }
 }
 
 void loop() {
-  // draai alle servos heen en terug, omstebeurt
+#ifdef TURNASONE
+  turnAsOne(vingers, 2, MAXTURN);
+  turnAsOne(vingers, 2, MINTURN);  
+#elif OMSTEBEURT
   for(BetterServo &toTurn : vingers){ 
     toTurn.turn(toTurn.getMax());
     toTurn.turn(toTurn.getMin());
   }
-
-//    // draai alle servos heen en terug, omstebeurt
-//  for(BetterServo &toTurn : vingers){ 
-//    toTurn.turn(toTurn.getMax());
-//  }
-//  for(BetterServo &toTurn : vingers){ 
-//    toTurn.turn(toTurn.getMin());
-//  }
-
+#elif HEENTERUG
+  for(BetterServo &toTurn : vingers){ 
+    toTurn.turn(toTurn.getMax());
+  }
+  for(BetterServo &toTurn : vingers){ 
+    toTurn.turn(toTurn.getMin());
+  }
+#endif
 }
