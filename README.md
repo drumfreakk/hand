@@ -5,6 +5,8 @@ Ze draaien eerst omstebeurt heen en terug, en dan allemaal tegelijk heen en teru
 Servo library: 
 
 https://github.com/arduino-libraries/Servo
+en 
+https://github.com/kippenjongen/BetterServo
 
 pak uit in Arduino/libraries
 
