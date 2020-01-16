@@ -1,7 +1,7 @@
 # hand
 
 
-Dit is oud, deze script gaat naar de examples van de library. Veel success
+Dit is oud, deze script gaat naar de examples van de [library](https://github.com/kippenjongen/BetterServo). Veel success
 
 
 Ze draaien eerst omstebeurt heen en terug, en dan allemaal tegelijk heen en terug.
